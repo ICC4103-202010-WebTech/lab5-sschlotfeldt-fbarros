@@ -19,5 +19,23 @@ namespace :db do
     result = Event.select(:name).distinct.map { |x| x.name }
     puts(result)
     puts("EOQ") # End Of Query -- always add this line after a query.
+
+    #1.
+    Customer.find(1).tickets.count
+    #2.
+    Event.joins(ticket_types: {tickets: {order: :customer}}).where(customers: {id: 1}).distinct.count
+    #3.
+    Event.joins(ticket_types: {tickets: {order: :customer}}).where(customers: {id: 1}).select("name").distinct.map {|x| x.name}
+    #4.
+    Event.joins(ticket_types: :tickets).where(id:1).count
+    #5.
+    Event.joins(ticket_types: :tickets).where(id: 1).select("ticket_types.ticket_price").sum("ticket_price")
+    #6.
+    Event.joins(ticket_types: {tickets: {order: :customer}}).where(customers: {gender: "f"}).distinct.map {|x| x.name}.max
+    #7.
+    Event.joins(ticket_types: {tickets: {order: :customer}}).where("customers.gender= 'm' and customers.age>= 18 and customers.age<= 31").distinct.map {|x| x.name}.max
+
+    # Id = You can try with whichever id you'd like to try.
   end
+
 end

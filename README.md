@@ -14,3 +14,8 @@ Please proceed with the following steps:
   above `model_queries.rb` file.
 * Make sure you add, commit and push your changes.
 
+Members:
+
+- Sebastián Schlotfeldt V.
+- Francisco Barros C.
+
